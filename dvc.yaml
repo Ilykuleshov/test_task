@@ -1,0 +1,16 @@
+stages:
+  train:
+    cmd: python main.py -c config.yaml
+    deps:
+    - cifar_simclr_resnet
+    - data
+    params:
+    - config.yaml:
+    outs:
+    - dvclive/models
+    metrics:
+    - dvclive/metrics.json:
+        cache: false
+    plots:
+    - dvclive/plots:
+        cache: false

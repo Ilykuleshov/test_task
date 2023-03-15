@@ -1,0 +1,4 @@
+outs:
+- md5: 14d50ec6b267ff240999b87d26cb9d7c
+  size: 46097203
+  path: pretrained_weights.pth

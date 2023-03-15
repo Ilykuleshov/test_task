@@ -5,8 +5,7 @@ trainer:
   callbacks:
   - class_path: pytorch_lightning.callbacks.ModelCheckpoint
     init_args: 
-      dirpath: .
-      filename: checkpoint
+      dirpath: dvclive/models
   max_epochs: 100
   accelerator: gpu
 model:
