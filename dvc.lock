@@ -1,0 +1,40 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python main.py -c params.yaml
+    deps:
+    - path: cifar_simclr_resnet
+      md5: f5f0e7d4f00c480df4f93a4c1429f889.dir
+      size: 8987
+      nfiles: 8
+    - path: data
+      md5: e252d2c8ba36d1ab3e21a873ab62daa3.dir
+      size: 356712185
+      nfiles: 9
+    params:
+      params.yaml:
+        data:
+          train_size: 0.1
+        model:
+          pretrained: false
+        trainer:
+          logger: dvclive.lightning.DVCLiveLogger
+          enable_checkpointing: true
+          callbacks:
+          - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+            init_args:
+              dirpath: dvclive/models
+          max_epochs: 100
+          accelerator: gpu
+    outs:
+    - path: dvclive/metrics.json
+      md5: e9c6747cf3808582120e7d730c2d0050
+      size: 311
+    - path: dvclive/models
+      md5: c9dfd84d0aa6ab85f7f14ea2536ad3da.dir
+      size: 138214007
+      nfiles: 1
+    - path: dvclive/plots
+      md5: 6687747f561fb0704e9d4a070324cc8a.dir
+      size: 9178
+      nfiles: 7
