@@ -1,11 +1,11 @@
 stages:
   train:
-    cmd: python main.py -c config.yaml
+    cmd: python main.py -c params.yaml
     deps:
     - cifar_simclr_resnet
     - data
     params:
-    - config.yaml:
+    - params.yaml:
     outs:
     - dvclive/models
     metrics:
