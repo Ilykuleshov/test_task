@@ -28,3 +28,44 @@ stages:
       md5: 82efb930fec3e400d16614685ba144b7.dir
       size: 116174681
       nfiles: 1
+  train:
+    cmd: python main.py -c params.yaml
+    deps:
+    - path: cifar_simclr_resnet
+      md5: 7519a2e2e646eb8734e7fa1c8a17a412.dir
+      size: 8998
+      nfiles: 9
+    - path: data
+      md5: e252d2c8ba36d1ab3e21a873ab62daa3.dir
+      size: 356712185
+      nfiles: 9
+    - path: weights/weights.pt
+      md5: 36465137a846261004e49a164cdb3093
+      size: 46095433
+    params:
+      params.yaml:
+        data:
+          train_size: 0.05
+        model:
+          pretrained: false
+        trainer:
+          logger: dvclive.lightning.DVCLiveLogger
+          enable_checkpointing: true
+          callbacks:
+          - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+            init_args:
+              dirpath: dvclive/models
+          max_epochs: 100
+          accelerator: gpu
+    outs:
+    - path: dvclive/metrics.json
+      md5: dccdf8b2ea2dc7ed834544975b2df851
+      size: 315
+    - path: dvclive/models
+      md5: 1125822af53eb8e07ad966a82c863ba1.dir
+      size: 138214007
+      nfiles: 1
+    - path: dvclive/plots
+      md5: 807103d1b614ec2a7122f024599aef16.dir
+      size: 7352
+      nfiles: 7

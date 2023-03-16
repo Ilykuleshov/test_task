@@ -20,7 +20,7 @@ class ResNetSupervised(LightningModule):
         backbone.fc = nn.Sequential(nn.Linear(dim_mlp, dim_mlp), nn.ReLU(), backbone.fc)
 
         if pretrained:
-            weights = torch.load(REPO_ROOT / 'pretrained_weights.pth')
+            weights = torch.load(REPO_ROOT / 'weights/weights.pt')
             backbone.load_state_dict(weights)
         
         self.backbone = backbone
