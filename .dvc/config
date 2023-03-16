@@ -1,2 +1,8 @@
+[cache]
+    dir = /storage/dvc-cache/
+    type = "reflink,symlink,hardlink"
 [core]
+    remote = storage
     autostage = true
+['remote "storage"']
+    url = /storage/dvc-storage/

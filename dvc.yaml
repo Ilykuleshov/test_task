@@ -1,9 +1,25 @@
 stages:
+  download_weights:
+    cmd: gdown 14_nH2FkyKbt61cieQDiSbBVNP8-gtwgF -O weights/raw/
+    outs:
+    - weights/raw
+  extract_weights:
+    cmd: python scripts/extract_weights.py
+    deps:
+    - scripts/extract_weights.py
+    - weights/raw
+    outs:
+    - weights/weights.pt
+  download_data:
+    cmd: python scripts/download_data.py
+    outs:
+    - data
   train:
     cmd: python main.py -c params.yaml
     deps:
     - cifar_simclr_resnet
     - data
+    - weights/weights.pt
     params:
     - params.yaml:
     outs:
