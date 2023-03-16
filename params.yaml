@@ -4,11 +4,11 @@ trainer:
   enable_checkpointing: true
   callbacks:
   - class_path: pytorch_lightning.callbacks.ModelCheckpoint
-    init_args: 
+    init_args:
       dirpath: dvclive/models
   max_epochs: 100
   accelerator: gpu
 model:
   pretrained: true
 data:
-  train_size: .01
+  train_size: 1.0
